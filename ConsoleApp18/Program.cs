@@ -39,7 +39,14 @@
 
             T maxItem = _heap[0];
             int lastIndex = _heap.Count - 1;
+
+            Console.WriteLine("ExtractMax" + lastIndex );
+
             _heap[0] = _heap[lastIndex];
+            Console.WriteLine("ExtractMax" + _heap[0]);
+
+
+           Console.WriteLine("ExtractMax" + _heap[lastIndex]);
             _heap.RemoveAt(lastIndex);
 
             if (_heap.Count > 1)
@@ -50,7 +57,7 @@
             return maxItem;
         }
 
-        private void BuildHeap()
+        public void BuildHeap()
         {
             int n = _heap.Count;
             for (int i = (n / 2) - 1; i >= 0; i--)
@@ -76,7 +83,11 @@
             int leftChildIndex = (2 * index) + 1;
             int rightChildIndex = (2 * index) + 2;
 
+            Console.WriteLine("HeapifyDown Левому "+ leftChildIndex);
             int largestIndex = index;
+
+            Console.WriteLine("HeapifyDown Правому"+ rightChildIndex);
+            Console.WriteLine("HeapifyDown largestIndex" + largestIndex);
 
             if (leftChildIndex < _heap.Count && _heap[leftChildIndex].CompareTo(_heap[largestIndex]) > 0)
             {
@@ -99,7 +110,10 @@
         {
             T temp = _heap[i];
             _heap[i] = _heap[j];
-            _heap[j] = temp;
+            Console.WriteLine($"Swap i  {_heap[i]} ");
+
+          _heap[j] = temp;
+            Console.WriteLine($"Swap j {_heap[j]}");
         }
     }
 
@@ -112,12 +126,29 @@
 
             BinaryHeap<int> heap = new BinaryHeap<int>(numbers);
 
+
+
+            foreach (int i in numbers)
+            {
+
+                Console.WriteLine(i);
+
+            }
+
+
             Console.WriteLine("Priority Queue (Max Heap):");
             while (heap.Size > 0)
             {
                 int max = heap.ExtractMax();
+                Console.WriteLine("Вывод");
                 Console.WriteLine($"Priority: {max}");
             }
+
+
+                Console.WriteLine("Вывод");
+                Console.WriteLine(heap.Size);
+            heap.BuildHeap();
+
 
             Console.ReadLine();
 
